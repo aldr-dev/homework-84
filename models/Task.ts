@@ -21,6 +21,7 @@ const TaskSchema = new mongoose.Schema<TaskFields>({
   },
   description: String,
   status: {
+    type: String,
     enum: ['new', 'in_progress', 'complete'],
     default: 'new',
   }

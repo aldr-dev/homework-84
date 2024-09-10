@@ -64,6 +64,10 @@ tasksRouter.put('/:id', auth, async (req: RequestWithUser, res, next) => {
     await task.save();
     return res.send(task);
   } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      return res.status(400).send(error);
+    }
+
     return next(error);
   }
 });

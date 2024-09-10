@@ -42,6 +42,10 @@ usersRouter.post('/sessions', async (req, res, next) => {
 
     return res.send(user);
   } catch (error) {
+    if (error instanceof mongoose.Error.ValidationError) {
+      return res.status(400).send(error);
+    }
+
     return next(error);
   }
 });
